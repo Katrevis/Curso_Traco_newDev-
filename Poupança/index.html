@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<head>
+	<title>	Minha Poupança $$$</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="wrap">
+            <div class="img">
+                <img src="img-2.png">
+            </div>
+            <div class="text">	
+                <span class="form-title">
+                    Minha Poupança $$$  </span>
+<p id="saldo" style="background-color: #aaffff;">Saldo:</p>
+<p id="extrato" style="background-color: #aaffff;">Extrato</p>
+            </div>
+
+
+<p id="acoes">
+
+<input id="valor"><br>
+
+<input type="button" value="Depósito" onclick="poupanca.depositar();">
+
+<input type="button" value="Saque" onclick="poupanca.sacar();"><br>
+
+<input type="button" value="Extrato" onclick="poupanca.exibirExtrato();">
+
+</p>
+</body>
+
+
+<script>
+
+var saidaSaldo = document.getElementById("saldo");
+
+var saidaExtrato = document.getElementById("extrato");
+
+var valorHTML = document.getElementById("valor");
+
+var poupanca = {
+
+
+saldo: 0,
+
+movimentacao: [],
+
+
+depositar: function() {
+
+
+this.saldo += Number(valorHTML.value);
+
+saidaSaldo.innerHTML = this.saldo;
+
+this.movimentacao.push("Depósito de " + valorHTML.value);
+
+valorHTML.value = "";
+
+
+},
+
+
+sacar: function() {
+
+
+var valor = Number(valorHTML.value);
+
+
+if(valor>this.saldo) {
+
+alert("Saldo Insuficente!");
+
+} else {
+
+this.saldo -= valor;
+
+this.movimentacao.push("Saque de " + valor);
+
+}
+
+
+saidaSaldo.innerHTML = this.saldo;
+
+valorHTML.value = "";
+
+
+},
+
+
+exibirExtrato: function() {
+
+
+
+saidaExtrato.innerHTML = "Extrato: " ;
+
+
+
+for(i=0; i<=this.movimentacao.length-1; i++) {
+
+
+saidaExtrato.innerHTML += this.movimentacao[i] + " "; "</br>";
+
+}
+
+}
+
+}
+
+</script>
+</html>
